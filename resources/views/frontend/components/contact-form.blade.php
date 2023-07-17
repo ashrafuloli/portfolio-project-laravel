@@ -32,14 +32,60 @@
                                       placeholder="Enter your message here..." style="height: 10rem"></textarea>
                             <label for="message">Message</label>
                         </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                        </div>
                     </form>
                 </div>
-                <div class="d-grid">
-                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
     </div>
 </section>
+
+<script>
+    let contactForm = document.getElementById('contactForm')
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let phone = document.getElementById('phone').value;
+        let message = document.getElementById('message').value;
+
+        if (name.length === 0) {
+            alert("name is required")
+        } else if (email.length === 0) {
+            alert("email is required")
+        } else if (phone.length === 0) {
+            alert("phone is required")
+        } else if (phone.length === 0) {
+            alert("phone is required")
+        } else {
+            let formData = {
+                fullName: name,
+                email: email,
+                phone: phone,
+                message: message,
+            }
+
+            let URL = '/contactRequest';
+
+            // loader show
+            document.getElementById('loading-div').classList.remove('d-none')
+            document.getElementById('content-div').classList.add('d-none')
+
+            let result = await axios.post(URL, formData);
+
+            // loader hide
+            document.getElementById('loading-div').classList.add('d-none')
+            document.getElementById('content-div').classList.remove('d-none')
+
+            if (result.status === 200 && result.data === 1) {
+                alert('Your request has been submitted successfully')
+                contactForm.reset();
+            } else {
+                alert('Something went wrong')
+            }
+        }
+    })
+</script>
