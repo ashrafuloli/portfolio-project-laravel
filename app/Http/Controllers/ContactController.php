@@ -9,7 +9,7 @@ class ContactController extends Controller
 {
     function page(Request $request)
     {
-        return view('');
+        return view('frontend.pages.contact');
     }
 
     function contactRequest(Request $request)

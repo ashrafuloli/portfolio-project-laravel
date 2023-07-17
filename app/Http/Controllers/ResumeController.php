@@ -9,7 +9,7 @@ class ResumeController extends Controller
 {
     function page(Request $request)
     {
-        return view('');
+        return view('frontend.pages.resume');
     }
 
     function resumeLink(Request $request)
