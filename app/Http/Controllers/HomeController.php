@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     function page(Request $request)
     {
-        return view('frontend.pages.home');
+        $seo = DB::table('seoproperties')->where('pageName', '=', 'home')->first();
+        return view('frontend.pages.home', ['seo' => $seo]);
     }
 
     function heroData(Request $request)
